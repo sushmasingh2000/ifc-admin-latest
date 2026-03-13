@@ -27,13 +27,44 @@ export const all_Data = [
       {
         id: 3.1,
         navLink: "/player",
-        navItem: "All Memeber",
+        navItem: "All Member",
         navIcon: (
           <span>
             <Diversity1 color="#15317E" fontSize="medium" />
           </span>
         ),
       },
+      //   {
+      //   id: 3.1,
+      //   navLink: "/active_member",
+      //   navItem: "Active Member",
+      //   navIcon: (
+      //     <span>
+      //       <Diversity1 color="#15317E" fontSize="medium" />
+      //     </span>
+      //   ),
+      // },
+      //  {
+      //   id: 3.1,
+      //   navLink: "/inactive_member",
+      //   navItem: "InActive Member",
+      //   navIcon: (
+      //     <span>
+      //       <Diversity1 color="#15317E" fontSize="medium" />
+      //     </span>
+      //   ),
+      // },
+       {
+        id: 3.1,
+        navLink: "/member_deposit_address",
+        navItem: " Member Address",
+        navIcon: (
+          <span>
+            <Diversity1 color="#15317E" fontSize="medium" />
+          </span>
+        ),
+      },
+      
     ],
   },
   {
@@ -67,26 +98,58 @@ export const all_Data = [
       </span>
     ),
   },
-  // {
-  //   id: 11,
-  //   navLink: '/spot_wallet',
-  //   navItem: 'Spot To Trade Deposit',
-  //   navIcon: (
-  //     <span>
-  //       <DashboardCustomizeIcon color="#15317E" fontSize="medium" />
-  //     </span>
-  //   ),
-  // },
-  //  {
-  //   id: 11,
-  //   navLink: '/profit_wallet',
-  //   navItem: 'Profit To Trade Deposit',
-  //   navIcon: (
-  //     <span>
-  //       <DashboardCustomizeIcon color="#15317E" fontSize="medium" />
-  //     </span>
-  //   ),
-  // },
+   {
+    id: 11,
+    navLink: '/promotion',
+    navItem: 'Promotional Bonus',
+    navIcon: (
+      <span>
+        <DashboardCustomizeIcon color="#15317E" fontSize="medium" />
+      </span>
+    ),
+  },
+  {
+    id: 4,
+    navLink: "/spot_wallet",
+    navItem: "Transfer",
+    navIcon: (
+      <span>
+        <CardGiftcard color="#15317E" fontSize="medium" />
+      </span>
+    ),
+    subcomponent: [
+  {
+    id: 11,
+    navLink: '/spot_wallet',
+    navItem: 'Spot To Trade ',
+    navIcon: (
+      <span>
+        <DashboardCustomizeIcon color="#15317E" fontSize="medium" />
+      </span>
+    ),
+  },
+   {
+    id: 11,
+    navLink: '/profit_wallet',
+    navItem: 'Profit To Trade ',
+    navIcon: (
+      <span>
+        <DashboardCustomizeIcon color="#15317E" fontSize="medium" />
+      </span>
+    ),
+  },
+   {
+        id: 5.1,
+        navLink: "/inr_Paying",
+        navItem: "ALL Trade ",
+        navIcon: (
+          <span>
+            <PlayCircleFilledSharp color="#15317E" fontSize="medium" />
+          </span>
+        ),
+      },
+]
+  },
     
   {
     id: 4,
@@ -193,7 +256,7 @@ export const all_Data = [
   },
   {
     id: 5,
-    navLink: "/inr_Paying",
+    navLink: "/spot_qr",
     navItem: "Transaction",
     navIcon: (
       <span>
@@ -203,8 +266,8 @@ export const all_Data = [
     subcomponent: [
       {
         id: 5.1,
-        navLink: "/inr_Paying",
-        navItem: " Trade Deposit",
+        navLink: "/spot_qr",
+        navItem: "Paying",
         navIcon: (
           <span>
             <PlayCircleFilledSharp color="#15317E" fontSize="medium" />

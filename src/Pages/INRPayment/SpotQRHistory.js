@@ -7,7 +7,7 @@ import axiosInstance from "../../config/axios";
 import CustomToPagination from "../../Shared/CustomPagination";
 import CustomTable from "../../Shared/CustomTable";
 
-const INRPaying = () => {
+const SpotQrHistory = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [totalamount, setTotalamount] = useState([]);
@@ -16,17 +16,16 @@ const INRPaying = () => {
   const [loding, setloding] = useState(false);
   const [page, setPage] = useState(1);
 
-  const INRPayingFunction = async () => {
+  const SpotQrHistoryFunction = async () => {
     setloding(true);
     try {
-      const res = await axiosInstance.post(API_URLS?.get_report_details, {
+      const res = await axiosInstance.post(API_URLS?.get_spot_deposit_details, {
         start_date: from_date,
         end_date: to_date,
-        username: search,
+        search: search,
         page: page,
         count: 10,
-        sub_label: "FUND DEPOSIT",
-        main_label: "IN",
+       
       });
       setData(res?.data?.result || []);
       setTotalamount(res?.data?.total);
@@ -42,33 +41,42 @@ const INRPaying = () => {
   };
 
   useEffect(() => {
-    INRPayingFunction();
+    SpotQrHistoryFunction();
   }, [page]);
 
 
   const tablehead = [
-    <span>S.No</span>,
-    <span>User ID</span>,
-    <span>Name</span>,
-    <span>Amount</span>,
-    <span>Status</span>,
-    <span>Transaction ID</span>,
-    <span>Date</span>,
-  ];
-
-  const tablerow = data?.data?.map((i, index) => [
-    <span>{index + 1}</span>,
-    <span>{i?.tr03_cust_id}</span>,
-    <span>{i?.lgn_name || "N/A"}</span>,
-    <span>{Number(i?.tr07_tr_amount).toFixed(2)}</span>,
-    <span>{i?.tr09_roi_status}</span>,
-    <span>{i?.tr07_trans_id}</span>,
-    <span>{moment(i?.tr07_created_at).format("DD-MM-YYYY HH:mm:ss")}</span>,
-  ]);
+     "S.No",
+     "User ID",
+     "User Name",
+     "User Email",
+     "Transaction ID",
+     "Amount",
+     "Wallet Address",
+     "UTR / Hash",
+     "Date",
+   ];
+ 
+ 
+   const tablerow = data?.data?.map((i, index) => {
+     return [
+       <span>{index + 1}</span>,
+       <span>{i?.lgn_cust_id}</span>,
+       <span>{i?.lgn_name}</span>,
+       <span>{i?.lgn_email}</span>,
+       <span>{i?.tr_trans_id}</span>,
+       <span>{i?.tr_amount}</span>,
+        <span className="">{i?.tr_from_wallet}</span>,
+       <span className="">{i?.tr_hex_code || "--"}</span>,
+       <span>
+         {moment(i?.tr_req_date).format("DD-MM-YYYY HH:mm:ss")}
+       </span>,
+     ];
+   });
 
   return (
     <div>
-      <p className="text-xl font-bold mb-3">All Trade Deposit History</p>
+      <p className="text-xl font-bold mb-3 px-5"> Spot Deposit History</p>
       <div className="flex bg-white my-2 px-2 gap-5 !justify-start py-2">
         <span className="font-bold">From:</span>
         <TextField
@@ -89,7 +97,7 @@ const INRPaying = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
         <Button
-          onClick={() => INRPayingFunction()}
+          onClick={() => SpotQrHistoryFunction()}
           variant="contained"
           startIcon={<FilterAlt />}
         >
@@ -112,4 +120,4 @@ const INRPaying = () => {
   );
 };
 
-export default INRPaying;
+export default SpotQrHistory;

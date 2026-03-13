@@ -13,6 +13,8 @@ import CustomCircularProgress from "../Shared/loder/CustomCircularProgress";
 const WalletAddress = () => {
     const [loading, setLoading] = useState(false);
     const [name, setName] = useState();
+    const [walletaddress, setWalletAddress] = useState("");
+
 
     const fk = useFormik({
         initialValues: {
@@ -26,6 +28,7 @@ const WalletAddress = () => {
     const MemberCustFn = async () => {
         if (!fk.values.customer_id) {
             setName("");
+            setWalletAddress("")
             return;
         }
         try {
@@ -36,6 +39,7 @@ const WalletAddress = () => {
 
             const customerName = res?.data?.result?.[0]?.lgn_name;
             setName(customerName || "User not found");
+            setWalletAddress(res?.data?.result?.[0]?.lgn_wallet_add || "Address Not Avialble")
         } catch {
             setName("Invalid User ID");
         }
@@ -104,8 +108,22 @@ const WalletAddress = () => {
                         {name}
                     </Typography>
                 )}
+
+                {walletaddress && (
+                    <>
+                        <TextField
+                            label="Old Wallet Adress "
+                            name="wallet_address"
+                            value={walletaddress}
+                            fullWidth
+                            margin="normal"
+                        />
+                    </>
+                )}
+
+
                 <TextField
-                    label="Wallet Adress "
+                    label="New Wallet Adress "
                     name="wallet_address"
                     value={fk.values.wallet_address}
                     onChange={fk.handleChange}

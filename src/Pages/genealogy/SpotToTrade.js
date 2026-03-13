@@ -20,13 +20,13 @@ const ProfitToTradeWalletHistory = () => {
     const SpotWalletHistoryFn = async () => {
         setloding(true);
         try {
-            const res = await axiosInstance.post(API_URLS?.get_report_details, {
+            const res = await axiosInstance.post(API_URLS?.get_all_transfer_details, {
                 start_date: from_date,
                 end_date: to_date,
                 search: search,
                 page: page,
                 count: 10,
-                sub_label: "INCOME WALLET",
+                type: "profit",
                 main_label: "ALL",
             });
             if (res?.data?.result) {
@@ -57,12 +57,12 @@ const ProfitToTradeWalletHistory = () => {
     const tablerow = data?.data?.map((i, index) => {
         return [
             <span>{(page - 1) * 10 + index + 1}</span>,
-            <span>{i.tr07_trans_id}</span>,
-            <span>{i.tr03_cust_id}</span>,
+            <span>{i.tr09_trans_id}</span>,
+            <span>{i.lgn_cust_id}</span>,
             <span>{i.lgn_name || 'N/A'}</span>,
-            <span>{Number(i.tr07_tr_amount).toFixed(2)}</span>,
-            <span>{moment(i.tr07_created_at).format("DD-MM-YYYY HH:mm:ss")}</span>,
-            <span>{i.tr07_description}</span>,
+            <span>{Number(i.tr09_real_amount).toFixed(2)}</span>,
+            <span>{moment(i.tr09_created_at).format("DD-MM-YYYY HH:mm:ss")}</span>,
+            <span>{i.tr09_discription}</span>,
         ];
     });
 
@@ -105,11 +105,11 @@ const ProfitToTradeWalletHistory = () => {
                     Filter
                 </Button>
             </div>
-                <CustomTable
-                    tablehead={tablehead}
-                    tablerow={tablerow}
-                    isLoading={loding}
-                />
+            <CustomTable
+                tablehead={tablehead}
+                tablerow={tablerow}
+                isLoading={loding}
+            />
             <div className="mt-3">
                 <CustomToPagination setPage={setPage} page={page} data={data} />
             </div>

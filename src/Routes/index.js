@@ -14,8 +14,13 @@ import TPBonus from "../Pages/genealogy/TPBonus";
 import WeeklyBonus from "../Pages/genealogy/Weekly";
 import INRPaying from "../Pages/INRPayment/INRPaying";
 import INRPayout from "../Pages/INRPayment/INRPayout";
+import SpotQrHistory from "../Pages/INRPayment/SpotQRHistory";
+import ActiveMember from "../Pages/player/ActiveMember";
+import InActiveMember from "../Pages/player/InactiveMember";
 import Player from "../Pages/player/Player";
+import PlayerAddress from "../Pages/player/PlayerDepositAddress";
 import RewardAchieverBonus from "../Pages/player/RewardAchiever";
+import Promotion from "../Pages/Promotion";
 import AdminTopUp from "../Pages/Topup";
 import WalletAddress from "../Pages/WalletAddressUpdate";
 
@@ -55,6 +60,30 @@ export const routes = [
     path: "/spot_wallet",
     component: <SpotWalletHistory />,
     navItem: "Spot  Wallet",
+  },
+   {
+    id: 2,
+    path: "/spot_qr",
+    component: <SpotQrHistory />,
+    navItem: "Direct Spot Deposit ",
+  },
+   {
+    id: 2,
+    path: "/member_deposit_address",
+    component: <PlayerAddress />,
+    navItem: "Member Deposit Address ",
+  },
+  {
+    id: 2,
+    path: "/active_member",
+    component: <ActiveMember />,
+    navItem: "Active Member",
+  },
+  {
+    id: 2,
+    path: "/inactive_member",
+    component: <InActiveMember />,
+    navItem: "Inactive Member",
   },
    {
     id: 2,
@@ -117,12 +146,13 @@ export const routes = [
     component: <PromotionalBonus />,
     navItem: "Promotional Bonus",
   },
-  {
+    {
     id: 119,
-    path: "/partner",
-    component: <PromotionalBonus />,
+    path: "/promotion",
+    component: <Promotion />,
     navItem: "Promotional Bonus",
   },
+  
    {
     id: 120,
     path: "/rank_rew",

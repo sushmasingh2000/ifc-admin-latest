@@ -75,6 +75,14 @@ const Dashboard = () => {
       count: Number(dashboard_new_data?.[0]?.FUND_DEPOSIT)?.toFixed(2) || 0,
     },
       {
+      id: 5,
+      item: "Promotional Bonus",
+      icon: (
+        <CurrencyExchangeIcon className="!h-[5rem] !w-[5rem] !text-[#2a2785]" />
+      ),
+      count: Number(dashboard_new_data?.[0]?.PROMOTIONAL_BONUS)?.toFixed(2) || 0,
+    },
+      {
       id: 4,
       item: "Direct",
       icon: (

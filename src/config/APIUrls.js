@@ -5,6 +5,7 @@
 
 export const domain = "https://ifctrade.io"
 export const front_end_domain = "https://panel.ifctrade.io"
+export const frontend = "https://ifctrade.io"
 export const email_for_topup = "maapadmaa1176@gmail.com"
 
 
@@ -38,5 +39,9 @@ export const API_URLS = {
   get_admin_dashboard: `/api/v1/get-admin-dashboard`,
   admin_member_payout: `/api/v1/member-payout-report`,
   admin_withdrawal_approve: `/api/v1/withdrawal-approval-from-admin`,
+  get_all_transfer_details: `/api/v1/get-all-transfer-history`,
+  get_spot_deposit_details: `/api/v1/get-spot-deposit-history`,
+  get_all_wallet_details: `/api/v1/get-all-user-wallet`,
+  get_promotional_bonus: `/api/v1/get-promotional-bonus`,
 
 };

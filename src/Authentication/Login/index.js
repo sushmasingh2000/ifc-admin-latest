@@ -82,7 +82,7 @@ const AdminLogIn = () => {
       toast(response?.data?.message);
 
       if (response.data.success) {
-        localStorage.setItem("token", response.data.result[0].token);
+        localStorage.setItem("token_admin", response.data.result[0].token);
         navigate("/admin_dashboard");
         window.location.reload();
       }

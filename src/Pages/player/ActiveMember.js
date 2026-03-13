@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { enCryptData } from '../../config/Secret';
 
-const Player = () => {
+const ActiveMember = () => {
   const [search, setSearch] = useState('');
   const [data, setData] = useState([]);
   const [loding, setloding] = useState(false);
@@ -36,6 +36,7 @@ const Player = () => {
         page: page,
         start_date: from_date,
         end_date: to_date,
+        count: 1000000
       });
       setData(res.data.result);
     } catch (e) {
@@ -61,58 +62,24 @@ const Player = () => {
   const tablehead = [
     <span>S.No</span>,
     <span>Customer ID</span>,
-    <span>Action</span>,
     <span>Name</span>,
     <span>Email</span>,
     <span>Mobile No.</span>,
     <span>Password</span>,
-    <span>Spot Wallet</span>,
-    <span>Trade Wallet</span>,
-    <span>Total Income</span>,
-    <span>Direct Members</span>,
-    <span>Team Members</span>,
-    <span>Rank</span>,
-    <span>Wallet Address</span>,
     <span>Registration Date</span>,
     <span>TopUp Date</span>,
   ];
 
-  const tablerow = data?.data?.map((i, index) => {
+  const tablerow = data?.data?.filter((i) => i.tr03_topup_date)?.map((i, index) => {
     return [
-      <span>{(page - 1) * 10 + index + 1}</span>, 
-      <span className={`${i?.lgn_token ? "!text-blue-600 underline cursor-pointer" : "!text-black"}`}
-        // onClick={() => {
-        //   localStorage.setItem("token", i.lgn_token);
-        //   localStorage.setItem("login_user", "User");
-        //   window.open(frontend + "/dashboard", "_blank");
-        // }}
-         >{i.tr03_cust_id || "--"}</span>,
-      <span><Button variant='contained' onClick={() => {
-        setSelectedUser(i);
-        setFormData({
-          name: i.lgn_name || "",
-          email: i.lgn_email || "",
-          mobile: i.lgn_mobile || "",
-          wallet: i.lgn_wallet_add || "",
-          password: i.lgn_pass || "",
-        });
-        setOpenModal(true);
-      }} >Edit </Button></span>,
+      <span>{index + 1}</span>, 
+      <span className="text-black"  >{i.tr03_cust_id || "--"}</span>,
       <span>{i.lgn_name || "--"}</span>,
       <span>{i.lgn_email || "--"}</span>,
       <span style={{ whiteSpace: 'nowrap' }}>
         {formatMobile(i.lgn_mobile)}
       </span>,
       <span>{i.lgn_pass || "--"}</span>,
-      <span className='text-blue-600'>{Number(i.tr03_fund_wallet || 0).toFixed(2)}</span>,
-      <span className='text-blue-600'>{Number(i.tr03_topup_wallet || 0).toFixed(2)}</span>,
-      <span className='text-blue-600'>{Number(i.tr03_total_income || 0).toFixed(2)}</span>,
-      <span>{i.tr03_dir_mem || 0}</span>,
-      <span>{i.tr03_team_mem || 0}</span>,
-      <span>{i.tr03_rank || "--"}</span>,
-      <span>{i?.lgn_wallet_add
-        ? `${i.lgn_wallet_add.slice(0, 14)}...${i.lgn_wallet_add.slice(-4)}`
-        : "--"}</span>,
       <span>{i.tr03_reg_date ? moment(i.tr03_reg_date)?.format("DD-MM-YYYY") : "--"}</span>,
       <span>{i.tr03_topup_date ? moment(i.tr03_topup_date)?.format("DD-MM-YYYY") : "--"}</span>
     ];
@@ -279,6 +246,6 @@ const Player = () => {
   );
 };
 
-export default Player;
+export default ActiveMember;
 
 
