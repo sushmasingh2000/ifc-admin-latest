@@ -7,7 +7,7 @@ import { API_URLS } from "../config/APIUrls";
 import axiosInstance from "../config/axios";
 
 const Dashboard = () => {
- 
+
   const { isLoading, data: dashboard_data } = useQuery(
     ["dashboard"],
     () => axiosInstance.get(API_URLS?.get_admin_dashboard),
@@ -21,20 +21,20 @@ const Dashboard = () => {
 
 
   const data = [
-     {
+    {
       id: 13,
       item: "Active Member",
       icon: <Person className="!h-[5rem] !w-[5rem] !text-[#2a2785]" />,
       count: Number(dashboard_new_data?.[0]?.active_member)?.toFixed(0) || 0,
     },
-     {
+    {
       id: 13,
       item: "Total  Memeber",
       icon: <Group className="!h-[5rem] !w-[5rem] !text-[#2a2785]" />,
       count: Number(dashboard_new_data?.[0]?.total_member)?.toFixed(0) || 0,
     },
-  
-     {
+
+    {
       id: 5,
       item: "Total Direct Spot Deposit ",
       icon: (
@@ -49,9 +49,14 @@ const Dashboard = () => {
       icon: (
         <CurrencyExchangeIcon className="!h-[5rem] !w-[5rem] !text-[#2a2785]" />
       ),
-      count: Number(dashboard_new_data?.[0]?.Spot_to_trade)?.toFixed(2) || 0,
+        count: Number(
+        (
+          (dashboard_new_data?.[0]?.Spot_to_trade || 0) -
+          (dashboard_new_data?.[0]?.PROMOTIONAL_BONUS || 0)
+        ).toFixed(2)
+      ),
     },
-     {
+    {
       id: 5,
       item: "Total Profit To Trade",
       icon: (
@@ -59,22 +64,27 @@ const Dashboard = () => {
       ),
       count: Number(dashboard_new_data?.[0]?.Profit_to_trade)?.toFixed(2) || 0,
     },
-      {
+    {
       id: 11,
       item: "Total Direct Withdrawal",
       icon: <CurrencyExchangeIcon className="!h-[5rem] !w-[5rem] !text-[#2a2785]" />,
       count: Number(dashboard_new_data?.[0]?.total_withdrawal)?.toFixed(2) || 0,
     },
     // blockchain withdrawal
-      {
+    {
       id: 5,
       item: "Total Trade Fund",
       icon: (
         <CurrencyExchangeIcon className="!h-[5rem] !w-[5rem] !text-[#2a2785]" />
       ),
-      count: Number(dashboard_new_data?.[0]?.FUND_DEPOSIT)?.toFixed(2) || 0,
+      count: Number(
+        (
+          (dashboard_new_data?.[0]?.FUND_DEPOSIT || 0) -
+          (dashboard_new_data?.[0]?.PROMOTIONAL_BONUS || 0)
+        ).toFixed(2)
+      ),
     },
-      {
+    {
       id: 5,
       item: "Promotional Bonus",
       icon: (
@@ -82,7 +92,7 @@ const Dashboard = () => {
       ),
       count: Number(dashboard_new_data?.[0]?.PROMOTIONAL_BONUS)?.toFixed(2) || 0,
     },
-      {
+    {
       id: 4,
       item: "Direct",
       icon: (
@@ -102,7 +112,7 @@ const Dashboard = () => {
       icon: <MonetizationOnIcon className="!h-[5rem] !w-[5rem] !text-[#2a2785]" />,
       count: Number(dashboard_new_data?.[0]?.ROI)?.toFixed(2) || 0,
     },
-   
+
   ];
   if (isLoading)
     return (
