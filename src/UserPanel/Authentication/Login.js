@@ -34,7 +34,7 @@ const LogIn = () => {
       const response = await axios.post(API_URLS.member_login, reqBody);
       toast(response?.data?.message);
       if (response?.data?.success) {
-        localStorage.setItem('token', response?.data?.result?.[0]?.token);
+        localStorage.setItem('token_admin', response?.data?.result?.[0]?.token);
         localStorage.setItem('type', response?.data?.result?.[0]?.user_type);
         navigate('/dashboard');
         window.location.reload();

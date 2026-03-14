@@ -1,6 +1,6 @@
 
 // export const domain = "http://192.168.18.101:9007"
-// export const front_end_domain = "http://192.168.18.101:3000"
+// export const front_end_domain = "http://192.168.18.101:3001"
 
 
 export const domain = "https://ifctrade.io"
