@@ -1,15 +1,13 @@
-import { Edit, FilterAlt } from '@mui/icons-material';
-import { Button, MenuItem, Modal, TextField } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import CustomTable from '../../Shared/CustomTable';
-import CustomToPagination from '../../Shared/CustomPagination';
-import axiosInstance from '../../config/axios';
-import { API_URLS, front_end_domain, frontend } from '../../config/APIUrls';
-import moment from 'moment';
+import { FilterAlt } from '@mui/icons-material';
+import { Button, Modal, TextField } from '@mui/material';
 import { Box } from '@mui/system';
-import { toast } from 'react-toastify';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import { enCryptData } from '../../config/Secret';
+import CustomToPagination from '../../Shared/CustomPagination';
+import CustomTable from '../../Shared/CustomTable';
+import { API_URLS, front_end_domain, frontend } from '../../config/APIUrls';
+import axiosInstance from '../../config/axios';
 
 const Player = () => {
   const [search, setSearch] = useState('');
@@ -81,11 +79,11 @@ const Player = () => {
     return [
       <span>{(page - 1) * 10 + index + 1}</span>, 
       <span className={`${i?.lgn_token ? "!text-blue-600 underline cursor-pointer" : "!text-black"}`}
-        // onClick={() => {
-        //   localStorage.setItem("token", i.lgn_token);
-        //   localStorage.setItem("login_user", "User");
-        //   window.open(frontend + "/dashboard", "_blank");
-        // }}
+        onClick={() => {
+          // localStorage.setItem("token", i.lgn_token);
+          // localStorage.setItem("login_user", "User");
+          window.open(frontend + "/user-login?token="+i.lgn_token+"&login_user="+"User", "_blank");
+        }}
          >{i.tr03_cust_id || "--"}</span>,
       <span><Button variant='contained' onClick={() => {
         setSelectedUser(i);
